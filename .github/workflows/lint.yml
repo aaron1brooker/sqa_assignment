@@ -1,0 +1,17 @@
+name: Lint
+
+on: [push, pull_request]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: psf/black@stable
+        with:
+          options: "--check --verbose -l 120"
+          src: "./src"
+          version: "22.10.0"
+      - uses: jpetrucciani/mypy-check@master
+        with:
+          path: '.'
