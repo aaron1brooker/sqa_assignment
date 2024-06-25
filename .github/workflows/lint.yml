@@ -12,6 +12,6 @@ jobs:
           options: "--check --verbose -l 120"
           src: "./src"
           version: "22.10.0"
-      -uses: jpetrucciani/mypy-check@master
+      - uses: jpetrucciani/mypy-check@master
         with:
           path: '.'
