@@ -1,3 +1,4 @@
--r requirement.txt
+-r requirements.txt
 pytest
 black==22.10.0
+mypy
