@@ -136,7 +136,24 @@
     </div>
 
     <script>
-        function addRadioButton() {
+        const sendRequest = (endpoint, payload) => {
+            // All endpoints follow the POST method and return the same response
+            fetch("/" + endpoint, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            }).then(response => response.json())
+                .then(data => {
+                    if(!data.success) {
+                        console.error("Did not execute task")
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        const addRadioButton = () => {
             const radioGroup = document.getElementById('radio-group');
             const newRadioItem = document.createElement('div');
             newRadioItem.className = 'radio-item';
@@ -157,20 +174,23 @@
             const deleteButton = document.createElement('button');
             deleteButton.className = 'delete-button';
             deleteButton.innerText = 'X';
-            deleteButton.onclick = function() { deleteItem(this) };
+            deleteButton.onclick = function() {deleteItem(this)};
             newRadioItem.appendChild(deleteButton);
 
             radioGroup.appendChild(newRadioItem);
+
+            sendRequest("add-item", {})
         }
 
-        function deleteItem(button) {
+        const deleteItem = (button) => {
             const radioItem = button.parentNode;
             radioItem.parentNode.removeChild(radioItem);
+            sendRequest("delete-item", {});
         }
 
-        function toggleStrikethrough(checkbox) {
-            console.log(checkbox)
+        const toggleStrikethrough = (checkbox) => {
             const label = checkbox.nextElementSibling;
+            sendRequest("check-item", {"is_checked": checkbox.checked});
             if (checkbox.checked) {
                 label.style.textDecoration = 'line-through';
                 label.style.color = '#999';
