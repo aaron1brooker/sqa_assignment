@@ -1,6 +1,6 @@
 import logging
 
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request # type: ignore
 
 from src.flask.utils import execution_status_response
 
