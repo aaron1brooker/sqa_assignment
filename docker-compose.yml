@@ -1,0 +1,24 @@
+services:
+  todo_app:
+    build: ./src/
+    command: sh -c "python3 ./db_interactions.py"
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+  mysql: 
+    build: ./mysql/
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'db'
+      MYSQL_ROOT_PASSWORD: 'root'
+      MYSQL_USER: myuser
+      MYSQL_PASSWORD: mypassword
+    ports:
+      - '3006:3006'
+    healthcheck:
+      test: mysqladmin ping -h 127.0.0.1 -u $$MYSQL_USER --password=$$MYSQL_PASSWORD
+      start_period: 1s
+      interval: 1s
+      timeout: 5s
+      retries: 55
