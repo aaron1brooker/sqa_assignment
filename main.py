@@ -5,7 +5,7 @@ from src.flask.router import app
 
 def main():
     logging.basicConfig(level=logging.INFO)
-    app.run(host='0.0.0.0', port=5001)
+    app.run(host="0.0.0.0", port=5001)
     return 0
 
 
