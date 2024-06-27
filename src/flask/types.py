@@ -1,9 +1,13 @@
 from pydantic import BaseModel
 
 
-class AddItemRequest(BaseModel):
+class ItemContent(BaseModel):
     item_id: str
     message: str
+
+
+class AddItemRequest(ItemContent):
+    ...
 
 
 class DeleteItemRequest(BaseModel):
@@ -19,8 +23,7 @@ class FetchItemsRequest(BaseModel):
 
 
 class FetchItemsResponse(BaseModel):
-    item_id: str
-    message: str
+    items: list[ItemContent]
 
 
 class OutcomeResponse(BaseModel):

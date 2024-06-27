@@ -1,3 +1,0 @@
-# example for setup
-def test_example() -> None:
-    ...
