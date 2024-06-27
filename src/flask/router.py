@@ -1,10 +1,10 @@
 import logging
 
-from pydantic import ValidationError  # type: ignore
+from pydantic import ValidationError
 
-from flask import Flask, Response, render_template, request  # type: ignore
+from flask import Flask, Response, render_template, request, jsonify
 
-from src.flask.types import CheckItemRequest, DeleteItemRequest, AddItemRequest, FetchItemsRequest
+from src.flask.types import CheckItemRequest, DeleteItemRequest, AddItemRequest, FetchItemsRequest, FetchItemsResponse
 from src.flask.utils import execution_status_response
 
 app = Flask(__name__)
@@ -32,7 +32,7 @@ def validate_request_payload():
                 case "add_item":
                     AddItemRequest(**request_payload)
                 case _:
-                    logger.error(f"Unknown request type: {request.endpoint}")
+                    logger.error("Invalid request endpoint")
                     return execution_status_response(False)
         except ValidationError as e:
             logger.error(f"Payload invalid: {e}")
@@ -73,4 +73,4 @@ def fetch_items() -> Response:
     logger.info(f"Received fetch items request with value: {fetch_items_request}")
 
     # TODO(Alex): add operation
-    return execution_status_response(True)
+    return jsonify(FetchItemsResponse(items=[]).model_dump_json())
