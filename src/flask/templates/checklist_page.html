@@ -179,13 +179,13 @@
 
             radioGroup.appendChild(newRadioItem);
 
-            sendRequest("add-item", {})
+            sendRequest("add-item", {item_id: radioGroup.id, message: newRadioLabel.innerText})
         }
 
         const deleteItem = (button) => {
             const radioItem = button.parentNode;
             radioItem.parentNode.removeChild(radioItem);
-            sendRequest("delete-item", {});
+            sendRequest("delete-item", {item_id: radioItem.id});
         }
 
         const toggleStrikethrough = (checkbox) => {
