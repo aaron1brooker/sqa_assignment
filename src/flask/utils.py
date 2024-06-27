@@ -1,5 +1,5 @@
 import logging
-from flask import jsonify, Response # type: ignore
+from flask import jsonify, Response  # type: ignore
 
 from src.flask.types import OutcomeResponse
 

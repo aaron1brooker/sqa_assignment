@@ -1,6 +1,6 @@
 import logging
 
-from pydantic import ValidationError # type: ignore
+from pydantic import ValidationError  # type: ignore
 
 from flask import Flask, render_template, request  # type: ignore
 
