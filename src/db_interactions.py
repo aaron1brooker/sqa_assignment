@@ -1,4 +1,4 @@
-import mysql.connector # type: ignore
+import mysql.connector  # type: ignore
 
 connection = mysql.connector.connect(user="root", password="root", host="mysql", port="3306", database="db")
 print("Succesfully connected to db")
