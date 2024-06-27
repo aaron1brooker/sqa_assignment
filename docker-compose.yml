@@ -1,10 +1,11 @@
 services:
   todo_app:
-    build: ./src/
-    command: sh -c "python3 ./db_interactions.py"
+    build: ./
     depends_on:
       mysql:
         condition: service_healthy
+    ports: 
+      - '5001:5000'
 
   mysql: 
     build: ./mysql/
