@@ -1,8 +1,10 @@
 from pydantic import BaseModel
 
+
 class ItemContent(BaseModel):
     item_id: str
     message: str
+
 
 class AddItemRequest(ItemContent):
     ...
