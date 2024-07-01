@@ -47,9 +47,9 @@ def check_item() -> Response:
     check_item_request = CheckItemRequest(**request.get_json())
     logger.info(f"Received check item request with value: {check_item_request}")
 
-    check_item_in_db(check_item_request.item_id)
+    result = check_item_in_db(check_item_request.item_id)
 
-    return execution_status_response(True)
+    return execution_status_response(result)
 
 
 @app.route("/delete-item", methods=["POST"])
@@ -57,21 +57,20 @@ def delete_item() -> Response:
     delete_item_request = DeleteItemRequest(**request.get_json())
     logger.info(f"Received delete item request with value: {delete_item_request}")
 
-    delete_item_from_db(delete_item_request.item_id)
-    return execution_status_response(True)
+    result = delete_item_from_db(delete_item_request.item_id)
+    return execution_status_response(result)
 
 
 @app.route("/add-item", methods=["POST"])
 def add_item() -> Response:
     add_item_request = AddItemRequest(**request.get_json())
     logger.info(f"Received add item request with value: {add_item_request}")
-    george = add_item_to_db(add_item_request.item_id, add_item_request.message, add_item_request.checked)
-    return execution_status_response(george)
+    result = add_item_to_db(add_item_request.item_id, add_item_request.message, add_item_request.checked)
+    return execution_status_response(result)
 
 
 @app.route("/fetch-items", methods=["POST"])
 def fetch_items() -> Response:
     fetch_items_request = FetchItemsRequest(**request.get_json())
     logger.info(f"Received fetch items request with value: {fetch_items_request}")
-
     return jsonify(FetchItemsResponse(items=get_all_items()).model_dump_json())
