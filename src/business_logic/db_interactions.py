@@ -23,7 +23,7 @@ def get_all_items() -> list:
     cursor.execute("SELECT * FROM items")
 
     items = []
-    for (item_id, description, completed) in cursor:
+    for (item_id, description, completed) in cursor: #type: ignore
         items.append({"item_id": item_id, "message": description, "checked": completed})
     connection.commit()
     connection.close()
