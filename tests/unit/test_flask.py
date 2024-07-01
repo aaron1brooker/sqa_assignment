@@ -50,7 +50,7 @@ class TestValidateRequestPayload(unittest.TestCase):
     def test_invalid_add_item_request(self):
         with self.client:
             response = self.client.post(
-                "/add-item", data=json.dumps({"item_id": "item123", "message": 123, "checked": 1}), content_type="application/json"
+                "/add-item", data=json.dumps({"item_id": "item123", "message": 123, "checked": "True"}), content_type="application/json"
             )
             self.assertEqual(response.get_json(), OutcomeResponse(success=False).model_dump_json())
 
