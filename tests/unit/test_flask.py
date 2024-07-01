@@ -22,14 +22,16 @@ class TestValidateRequestPayload(unittest.TestCase):
     def test_invalid_check_item_request(self):
         with self.client:
             response = self.client.post(
-                "/check-item", data=json.dumps({"is_checked": "not_a_boolean"}), content_type="application/json"
+                "/check-item", data=json.dumps({"item_id": 999}), content_type="application/json"
             )
             self.assertEqual(response.get_json(), OutcomeResponse(success=False).model_dump_json())
 
-    def test_valid_check_item_request(self):
+    @patch("src.flask.router.check_item_in_db")
+    def test_valid_check_item_request(self, mock_check_item):
+        mock_check_item.return_item = True
         with self.client:
             response = self.client.post(
-                "/check-item", data=json.dumps({"is_checked": True}), content_type="application/json"
+                "/check-item", data=json.dumps({"item_id": "item_id_1"}), content_type="application/json"
             )
             self.assertEqual(response.get_json(), OutcomeResponse(success=True).model_dump_json())
 
@@ -40,7 +42,9 @@ class TestValidateRequestPayload(unittest.TestCase):
             )
             self.assertEqual(response.get_json(), OutcomeResponse(success=False).model_dump_json())
 
-    def test_valid_delete_item_request(self):
+    @patch("src.flask.router.delete_item_from_db")
+    def test_valid_delete_item_request(self, mock_delete_item):
+        mock_delete_item.return_item = True
         with self.client:
             response = self.client.post(
                 "/delete-item", data=json.dumps({"item_id": "item123"}), content_type="application/json"
@@ -50,15 +54,19 @@ class TestValidateRequestPayload(unittest.TestCase):
     def test_invalid_add_item_request(self):
         with self.client:
             response = self.client.post(
-                "/add-item", data=json.dumps({"item_id": "item123", "message": 123}), content_type="application/json"
+                "/add-item",
+                data=json.dumps({"item_id": "item123", "message": 123, "checked": "True"}),
+                content_type="application/json",
             )
             self.assertEqual(response.get_json(), OutcomeResponse(success=False).model_dump_json())
 
-    def test_valid_add_item_request(self):
+    @patch("src.flask.router.add_item_to_db")
+    def test_valid_add_item_request(self, mock_add_item):
+        mock_add_item.return_item = True
         with self.client:
             response = self.client.post(
                 "/add-item",
-                data=json.dumps({"item_id": "item123", "message": "Added item"}),
+                data=json.dumps({"item_id": "item123", "message": "Added item", "checked": True}),
                 content_type="application/json",
             )
             self.assertEqual(response.get_json(), OutcomeResponse(success=True).model_dump_json())
@@ -70,7 +78,9 @@ class TestValidateRequestPayload(unittest.TestCase):
             )
             self.assertEqual(response.get_json(), OutcomeResponse(success=False).model_dump_json())
 
-    def test_valid_fetch_items_request(self):
+    @patch("src.flask.router.get_all_items")
+    def test_valid_fetch_items_request(self, mock_get_all_items):
+        mock_get_all_items.return_item = []
         # Simulate valid JSON payload for '/fetch-items' endpoint
         with self.client:
             response = self.client.post(
