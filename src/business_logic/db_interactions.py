@@ -4,7 +4,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 
-def add_item_to_db(item_id, item_description, item_completed) -> None:
+def add_item_to_db(item_id, item_description, item_completed) -> bool:
     connection = mysql.connector.connect(user="root", password="root", host="mysql", port="3306", database="db")
     logger.info("Sucessfully connected to DB in add_item_to_db")
     cursor = connection.cursor()
@@ -14,6 +14,7 @@ def add_item_to_db(item_id, item_description, item_completed) -> None:
     connection.commit()
     cursor.close()
     logger.info("item_id {item_id} successfully entered into DB")
+    return True
 
 
 def get_all_items() -> list:

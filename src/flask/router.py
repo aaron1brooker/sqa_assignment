@@ -65,8 +65,8 @@ def delete_item() -> Response:
 def add_item() -> Response:
     add_item_request = AddItemRequest(**request.get_json())
     logger.info(f"Received add item request with value: {add_item_request}")
-    add_item_to_db(add_item_request.item_id, add_item_request.message, add_item_request.checked)
-    return execution_status_response(True)
+    george = add_item_to_db(add_item_request.item_id, add_item_request.message, add_item_request.checked)
+    return execution_status_response(george)
 
 
 @app.route("/fetch-items", methods=["POST"])
