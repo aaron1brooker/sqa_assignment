@@ -1,11 +1,13 @@
 import logging
-
+from flask import jsonify
 from pydantic import ValidationError
 
 from flask import Flask, Response, render_template, request, jsonify
 
 from src.flask.types import CheckItemRequest, DeleteItemRequest, AddItemRequest, FetchItemsRequest, FetchItemsResponse
 from src.flask.utils import execution_status_response
+
+from src.business_logic.db_interactions import add_item_to_db, get_all_items, delete_item_from_db, check_item_in_db
 
 app = Flask(__name__)
 logger = logging.getLogger(__name__)
@@ -45,7 +47,8 @@ def check_item() -> Response:
     check_item_request = CheckItemRequest(**request.get_json())
     logger.info(f"Received check item request with value: {check_item_request}")
 
-    # TODO(Alex): add operation
+    check_item_in_db(check_item_request.item_id)
+
     return execution_status_response(True)
 
 
@@ -54,7 +57,7 @@ def delete_item() -> Response:
     delete_item_request = DeleteItemRequest(**request.get_json())
     logger.info(f"Received delete item request with value: {delete_item_request}")
 
-    # TODO(Alex): add operation
+    delete_item_from_db(delete_item_request.item_id)
     return execution_status_response(True)
 
 
@@ -62,8 +65,7 @@ def delete_item() -> Response:
 def add_item() -> Response:
     add_item_request = AddItemRequest(**request.get_json())
     logger.info(f"Received add item request with value: {add_item_request}")
-
-    # TODO(Alex): add operation
+    add_item_to_db(add_item_request.item_id, add_item_request.message, add_item_request.checked)
     return execution_status_response(True)
 
 
@@ -72,5 +74,4 @@ def fetch_items() -> Response:
     fetch_items_request = FetchItemsRequest(**request.get_json())
     logger.info(f"Received fetch items request with value: {fetch_items_request}")
 
-    # TODO(Alex): add operation
-    return jsonify(FetchItemsResponse(items=[]).model_dump_json())
+    return jsonify(FetchItemsResponse(items=get_all_items()).model_dump_json())

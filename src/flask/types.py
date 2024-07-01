@@ -4,6 +4,7 @@ from pydantic import BaseModel
 class ItemContent(BaseModel):
     item_id: str
     message: str
+    checked: bool
 
 
 class AddItemRequest(ItemContent):
@@ -15,7 +16,7 @@ class DeleteItemRequest(BaseModel):
 
 
 class CheckItemRequest(BaseModel):
-    is_checked: bool
+    item_id: str
 
 
 class FetchItemsRequest(BaseModel):
@@ -23,7 +24,7 @@ class FetchItemsRequest(BaseModel):
 
 
 class FetchItemsResponse(BaseModel):
-    items: list[ItemContent]
+    items: "list[ItemContent]"
 
 
 class OutcomeResponse(BaseModel):
