@@ -60,7 +60,7 @@
             transform: scale(1.5);
         }
 
-        .radio-item label {
+        .radio-item input[type="text"] {
             flex-grow: 1;
             padding: 10px 20px;
             font-size: 18px;
@@ -74,14 +74,14 @@
             overflow-wrap: break-word; /* Allows breaking of words to the next line if too long */
         }
 
-        .radio-item input[type="checkbox"]:checked + label {
+        .radio-item input[type="checkbox"]:checked + input[type="text"] {
             text-decoration: line-through;
             color: #999;
             background-color: #f0f0f0;
             border-color: #ccc;
         }
 
-        .radio-item label:focus {
+        .radio-item input[type="text"]:focus {
             outline: none;
             border-color: #4a90e2;
         }
@@ -127,15 +127,40 @@
         </div>
         <div class="radio-group" id="radio-group">
             <div class="radio-item" id="radio1">
-                <input type="checkbox" onchange="toggleStrikethrough(this)">
-                <label contenteditable="true" onclick="event.stopPropagation()">Start typing...</label>
-                <button class="delete-button" onclick="deleteItem(this)">X</button>
             </div>
         </div>
         <button class="add-button" onclick="addRadioButton()">Add New Item</button>
     </div>
 
     <script>
+
+        // Get items from DB on page load
+        document.addEventListener("DOMContentLoaded", function() {
+            fetch("/fetch-items", {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({user_identifier: 1})
+            }).then(response => response.json())
+                .then(json => {
+                    const data = JSON.parse(json);
+                    if (data.items.length == 0)
+                    {
+                        addRadioButton();
+                        return;
+                    }
+                    if (data.items.length == 0)
+                    {
+                        addRadioButton();
+                        return;
+                    }
+                    for (let i = 0; i < data.items.length; i++)
+                    {
+                        addRadioButton(data.items[i]);
+                    }
+                }) 
+        });
+
         const sendRequest = (endpoint, payload) => {
             // All endpoints follow the POST method and return the same response
             fetch("/" + endpoint, {
@@ -150,14 +175,21 @@
                         console.error("Did not execute task")
                     }
                 })
-                .catch(error => console.error('Error:', error));
+                .catch(error => console.error("Error: ", error));
         }
 
-        const addRadioButton = () => {
+        const addRadioButton = (item) => {
             const radioGroup = document.getElementById('radio-group');
             const newRadioItem = document.createElement('div');
             newRadioItem.className = 'radio-item';
-            newRadioItem.id = `radio${radioGroup.children.length + 1}`;
+
+            if (!item)
+            {
+                newRadioItem.id = `radio${radioGroup.children.length + 1}`;
+            } else {
+                newRadioItem.id = item.item_id;
+            }
+ 
 
             const newRadioInput = document.createElement('input');
             newRadioInput.type = 'checkbox';
@@ -165,12 +197,16 @@
             newRadioInput.setAttribute('onchange', 'toggleStrikethrough(this)');
             newRadioItem.appendChild(newRadioInput);
 
-            const newRadioLabel = document.createElement('label');
-            newRadioLabel.contentEditable = 'true';
-            newRadioLabel.innerText = 'New Item';
+            const newRadioLabel = document.createElement('input');
+            newRadioLabel.type = 'text';
+            if (!item) {
+                newRadioLabel.placeholder = "Start typing...";
+            } else {
+                newRadioLabel.value = item.message;
+            }
+
             newRadioLabel.setAttribute('onclick', 'event.stopPropagation()');
             newRadioItem.appendChild(newRadioLabel);
-
             const deleteButton = document.createElement('button');
             deleteButton.className = 'delete-button';
             deleteButton.innerText = 'X';
@@ -179,7 +215,18 @@
 
             radioGroup.appendChild(newRadioItem);
 
-            sendRequest("add-item", {item_id: radioGroup.id, message: newRadioLabel.innerText})
+            if (item && item.checked)
+            {   
+                newRadioInput.checked = true;
+            }
+
+            newRadioLabel.onkeypress = function(event) {
+                if (event.which === 13)
+                {
+                    sendRequest("add-item", {item_id: newRadioItem.id, message: newRadioLabel.value, checked: newRadioInput.checked})
+                    newRadioLabel.blur();
+                }
+            }
         }
 
         const deleteItem = (button) => {
@@ -190,7 +237,9 @@
 
         const toggleStrikethrough = (checkbox) => {
             const label = checkbox.nextElementSibling;
-            sendRequest("check-item", {"is_checked": checkbox.checked});
+            const radioItem = label.parentNode;
+
+            sendRequest("check-item", {item_id: radioItem.id});
             if (checkbox.checked) {
                 label.style.textDecoration = 'line-through';
                 label.style.color = '#999';
