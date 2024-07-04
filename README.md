@@ -57,6 +57,7 @@ Coverage.py: To measure the amount of Python code tested by our test suites and 
 ### Frameworks/Libraries
 Pydantic: For data validation and settings management using Python type annotations.
 Flask: As the lightweight web framework for the Python backend to handle API requests.
+Docker: 
 
 ### Linters
 Black Formatter: For code formatting to ensure a consistent code style across the project.
@@ -73,16 +74,17 @@ Google Lighthouse: For auditing the performance, accessibility, and best practic
 GitHub Actions: For automating the testing and deployment processes, ensuring continuous integration and deployment of code changes. This tool helped maintain code quality and facilitated the smooth release of new features.
 
 ## 📑 Running the Application
-_complete this_
 
 1. Clone the repository
-2. Run the required packages for development in the `requirements-dev.txt` file.
-
+2. Run the required packages for development in the `requirements-dev.txt` file
 ```bash
 python -m pip install -r requirements-dev.txt
 ```
-3. Run the application
-4. Navigate to --- to use the application
+3. In the terminal run the following to bring up both the database and webserver:
+```
+docker-compose up --build
+```
+4. You should be given a localhost URL, click the URL to run
 
 ### How to use the application:
 _How to create, update, read, and delete tasks_
