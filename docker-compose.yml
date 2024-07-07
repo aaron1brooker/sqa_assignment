@@ -23,3 +23,13 @@ services:
       interval: 1s
       timeout: 5s
       retries: 55
+
+  todo_app-test:
+    build:
+      context: .
+      dockerfile: tests.Dockerfile
+    depends_on:
+      mysql:
+        condition: service_healthy
+      todo_app:
+        condition: service_started
