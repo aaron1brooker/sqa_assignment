@@ -34,7 +34,7 @@ Azra Mukadam:
 - Review pull requests
 - Contribute to documentation
 
-The workload was split evenly between each member of the team, with different primary focuses in different areas, but all areas being crucial to the development of the project. Therefore, the contribution was 33% from each team member.
+The workload was split evenly between each member of the team, with different primary focuses in different areas, but all areas being crucial to the development of the project. Therefore, the contribution was 33% from each team member. _NOTE: The PRs are not an accurate representation of work done as we shared code to be included in each other's PRs. All members contributed to coding and documentation._
 
 ## 🛠 Tools Used
 
