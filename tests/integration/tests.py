@@ -1,5 +1,5 @@
 import pytest
-import requests # type: ignore
+import requests  # type: ignore
 import mysql.connector  # type: ignore
 import json
 
