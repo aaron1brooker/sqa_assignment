@@ -65,7 +65,8 @@ In the development of our To-Do application, we utilised a variety of tools to e
 
 ### Project Management Tools
 - Kanban Board: Used for tracking tasks, managing project progress, and organising work in a visual format. It provided clear visibility into the workflow and facilitated dynamic task allocation.
-_insert ss_
+
+![image](https://github.com/user-attachments/assets/57f15371-cefd-4f26-b0f2-ba36dfb13d30)
 
 ### Performance and Accessibility Audit
 - Google Lighthouse: For auditing the performance, accessibility, and best practices of the web application, ensuring optimal performance and user experience.
@@ -87,7 +88,7 @@ docker-compose up --build
 4. You should be given a localhost URL, click the URL to run
 
 ### How to use the application:
-- To create a task, click the ####+ and start typing your to-do item
+- To create a task, click the + and start typing your to-do item
 - To edit a task, click the text in the task item and start typing
 - To complete a task, check the textbox
 - To delete a task, click the bin icon next to the task you want to delete
