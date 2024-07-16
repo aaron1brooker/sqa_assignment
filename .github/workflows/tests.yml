@@ -32,7 +32,7 @@ jobs:
         run: PYTHONPATH=. python -m pytest
       
       - name: Build todo app container
-        run: docker-comopose up --build todo_app
+        run: docker comopose up --build todo_app
 
       - name: Build test containers and run integration tests
-        run: docker-compose up --build todo_app-test
+        run: docker compose up --build todo_app-test
