@@ -30,6 +30,9 @@ jobs:
 
       - name: Run unit tests
         run: PYTHONPATH=. python -m pytest
+      
+      - name: Build todo_app container
+        run: docker compose create todo_app
 
       - name: Build test containers and run integration tests
         run: docker compose up todo_app-test
