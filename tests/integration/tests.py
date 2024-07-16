@@ -104,8 +104,11 @@ def test_add_item_succesfully_adds_item_to_db(items, items_added):
 
     # THEN
     items_in_db = get_all_items_from_db()
-    # should probably loop through all items and check too
     assert len(items_in_db) == items_added
+    for item_added, item_in_db in zip(items, items_in_db):
+        assert item_added["item_id"] == item_in_db["item_id"]
+        assert item_added["description"] == item_in_db["message"]
+        assert item_added["completed"] == item_in_db["checked"]
 
 
 @pytest.mark.parametrize(
