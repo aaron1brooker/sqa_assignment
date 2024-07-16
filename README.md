@@ -22,10 +22,11 @@ Aaron Brooker:
 - Contribute to documentation
 
 Alex McDonald:
-- Manage database
+- Implement MySQL database
 - Implement backend code
 - Write tests
 - Review pull requests
+- Containerizing services via Docker
 - Contribute to documentation
 
 Azra Mukadam:
@@ -86,6 +87,19 @@ docker-compose up --build
 ```
 4. You should be given a localhost URL, click the URL to run
 
+## 🛠️ Running Tests 
+
+### Unit Tests
+Navigate to the root directory and run the below command.
+```
+PYTHONPATH=. python -m pytest
+```
+### Integration Tests
+Navigate to the root directory and run the below command.
+```
+docker-compose up --build todo_app-test
+```
+
 ### How to use the application:
 _How to create, update, read, and delete tasks_
 
@@ -128,10 +142,21 @@ We have employed both TDD and BDD testing methodoligies within our test cases. T
 
 - Integration Tests: Our integration tests follow a BDD practice and allowed us to test end to end interactions between different components of the system. By using Docker containers we are able to simulate a production environment and ensure that the behaviour of the system as a whole functions as expected. Following standard BDD methology we have used GIVEN, WHEN and THEN statements. This makes it clear to developers and other stake holders to understand the expectations of the system and also what each step within the step is doing. 
 
-- Smoke Tests: By containerizing our services via Docker we can perform a smoke test / build acceptance test upon each pull request. Before the integration tests are run the todo_app application is built and ran it it's own container. Once the application is built a healthcheck of the service is performed to ensure that the application is healthy and that the tests can be run. Our health check makes a request to the web server and ensures that a valid repsonse is returned. This plus the integration tests themselves serve as build acceptance tests, ensuring that the application correctly builds within the container and is healthy. 
+- Smoke Tests: By containerizing our services via Docker we can perform a smoke test / build acceptance test upon each pull request. Before the integration tests are run the todo_app application is built and ran it it's own container. Once the application is built a healthcheck of the service is performed to ensure that the application is healthy and that the tests can be run. Our health check makes a request to the web server and ensures that a valid repsonse is returned. This plus the integration tests themselves serve as build acceptance tests, ensuring that the application correctly builds within the container and is healthy.
+
+## 👀 Testing Screenshots
+
+### Unit Tests
+
+<img width="982" alt="Screenshot 2024-07-16 at 19 55 19" src="https://github.com/user-attachments/assets/601e2f61-a0a1-41c3-987a-93347662a38b">
+
+
+### Integration Tests
+
+<img width="983" alt="Screenshot 2024-07-16 at 19 39 03" src="https://github.com/user-attachments/assets/15b9f4c7-bd1a-47f3-9632-b5fa2930a52f">
+
 
 ## 💻 Coding Best Practices
-_ss of test suite results_
 
 ### Consistent Code Style:
    - **Formatting:** We used Black for code formatting to ensure a consistent code style across the project. This minimised style-related discrepancies and made the code easier to read and review.
@@ -171,7 +196,18 @@ We set up our Continuous Integration (CI) pipeline to automate testing and deplo
    - **Deployment:** Upon passing all tests, the code was automatically deployed to our staging environment for further manual testing and validation.
 
 3. **Snapshots of Test Suite Results:**
-   _insert ss_
+
+### Unit tests succesfully passing within GitHub Actions upon a pull request.
+<img width="1058" alt="Screenshot 2024-07-16 at 20 00 09" src="https://github.com/user-attachments/assets/5ad90d0e-779a-4f40-b86d-981462ae08d6">
+
+### Integration tests succesfully passing within GitHub Actions upon a pull request.
+<img width="1047" alt="Screenshot 2024-07-16 at 20 01 44" src="https://github.com/user-attachments/assets/629c65d6-e76c-42cb-8939-9400e6bf0a80">
+
+### Linting checks succesfully passing within GitHub Actions upon a pull request.
+<img width="1060" alt="Screenshot 2024-07-16 at 20 02 46" src="https://github.com/user-attachments/assets/797f59d2-760a-4ef1-b289-093cf11a40f0">
+
+### Checks passed but merging blocked due to a review being required by an approved code reviewer. 
+<img width="923" alt="Screenshot 2024-07-16 at 19 58 41" src="https://github.com/user-attachments/assets/4531cdd2-ca75-4564-8ab0-c83ddaf71019">
 
 ### Pull Request Strategies
 
