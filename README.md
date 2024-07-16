@@ -41,37 +41,37 @@ The workload was split evenly between each member of the team, with different pr
 In the development of our To-Do application, we utilised a variety of tools to ensure high-quality code, effective project management, and comprehensive testing. Below is a detailed list of the tools we used across different aspects of the project:
 
 ### Version control
-Git: For tracking changes in the source code during development.
-GitHub: As the remote repository for collaboartion, code reviews, and issue tracking.
+- Git: For tracking changes in the source code during development.
+- GitHub: As the remote repository for collaboartion, code reviews, and issue tracking.
 
 ### Database
-MySQL: As the relational database management system for storing user data and tasks.
+- MySQL: As the relational database management system for storing user data and tasks.
 
 ### Testing
-Pytest: For unit and integration testing of Python code to ensure functionality and reliability.
-Cucumber/Gherkin: For behavior-driven development (BDD), allowing us to write tests in a human-readable format.
+- Pytest: For unit and integration testing of Python code to ensure functionality and reliability.
+- Cucumber/Gherkin: For behavior-driven development (BDD), allowing us to write tests in a human-readable format.
 
 ### Test Code Coverage
-Coverage.py: To measure the amount of Python code tested by our test suites and identify untested parts of the application.
+- Coverage.py: To measure the amount of Python code tested by our test suites and identify untested parts of the application.
 
 ### Frameworks/Libraries
-Pydantic: For data validation and settings management using Python type annotations.
-Flask: As the lightweight web framework for the Python backend to handle API requests.
-Docker: 
+- Pydantic: For data validation and settings management using Python type annotations.
+- Flask: As the lightweight web framework for the Python backend to handle API requests.
+- Docker: 
 
 ### Linters
-Black Formatter: For code formatting to ensure a consistent code style across the project.
-Mypy: For static type checking to identify type errors in Python code.
+- Black Formatter: For code formatting to ensure a consistent code style across the project.
+- Mypy: For static type checking to identify type errors in Python code.
 
 ### Project Management Tools
-Kanban Board: Used for tracking tasks, managing project progress, and organising work in a visual format. It provided clear visibility into the workflow and facilitated dynamic task allocation.
+- Kanban Board: Used for tracking tasks, managing project progress, and organising work in a visual format. It provided clear visibility into the workflow and facilitated dynamic task allocation.
 _insert ss_
 
 ### Performance and Accessibility Audit
-Google Lighthouse: For auditing the performance, accessibility, and best practices of the web application, ensuring optimal performance and user experience.
+- Google Lighthouse: For auditing the performance, accessibility, and best practices of the web application, ensuring optimal performance and user experience.
 
 ### Continuous Integration/Continuous Deployment (CI/CD)
-GitHub Actions: For automating the testing and deployment processes, ensuring continuous integration and deployment of code changes. This tool helped maintain code quality and facilitated the smooth release of new features.
+- GitHub Actions: For automating the testing and deployment processes, ensuring continuous integration and deployment of code changes. This tool helped maintain code quality and facilitated the smooth release of new features.
 
 ## 📑 Running the Application
 
@@ -87,7 +87,10 @@ docker-compose up --build
 4. You should be given a localhost URL, click the URL to run
 
 ### How to use the application:
-_How to create, update, read, and delete tasks_
+- To create a task, click the ####+ and start typing your to-do item
+- To edit a task, click the text in the task item and start typing
+- To complete a task, check the textbox
+- To delete a task, click the bin icon next to the task you want to delete
 
 ## 🚦 Project Workflow
 
