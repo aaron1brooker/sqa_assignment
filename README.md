@@ -50,7 +50,8 @@ MySQL: As the relational database management system for storing user data and ta
 
 ### Testing
 Pytest: For unit and integration testing of Python code to ensure functionality and reliability.
-Docker: Docker has been utilised to containerize the individual components of the system such as the MySQL database and the flask router. We have also implemented a seperate test container where are our integration tests are run within the Docker environment, utilising our containerized services to simulate a production environment. 
+
+Docker: Docker has been utilised to containerize the individual components of the system such as the MySQL database and the flask router. We have also implemented a seperate test container where are our integration tests run within the Docker environment, utilising our containerized services to simulate a production environment. 
 
 ### Test Code Coverage
 Coverage.py: To measure the amount of Python code tested by our test suites and identify untested parts of the application.
