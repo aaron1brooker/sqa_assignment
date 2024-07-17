@@ -22,10 +22,11 @@ Aaron Brooker:
 - Contribute to documentation
 
 Alex McDonald:
-- Manage database
+- Implement MySQL database
 - Implement backend code
 - Write tests
 - Review pull requests
+- Containerizing services via Docker
 - Contribute to documentation
 
 Azra Mukadam:
@@ -49,7 +50,8 @@ MySQL: As the relational database management system for storing user data and ta
 
 ### Testing
 Pytest: For unit and integration testing of Python code to ensure functionality and reliability.
-Cucumber/Gherkin: For behavior-driven development (BDD), allowing us to write tests in a human-readable format.
+
+Docker: Docker has been utilised to containerize the individual components of the system such as the MySQL database and the flask router. We have also implemented a seperate test container where are our integration tests run within the Docker environment, utilising our containerized services to simulate a production environment. 
 
 ### Test Code Coverage
 Coverage.py: To measure the amount of Python code tested by our test suites and identify untested parts of the application.
@@ -86,6 +88,19 @@ docker-compose up --build
 ```
 4. You should be given a localhost URL, click the URL to run
 
+## 🛠️ Running Tests 
+
+### Unit Tests
+Navigate to the root directory and run the below command.
+```
+PYTHONPATH=. python -m pytest
+```
+### Integration Tests
+Navigate to the root directory and run the below command.
+```
+docker-compose up --build todo_app-test
+```
+
 ### How to use the application:
 _How to create, update, read, and delete tasks_
 
@@ -121,10 +136,28 @@ Although we followed a Kanban approach, we incorporated elements of sprint plann
 At the end of each week, we conducted retrospectives to reflect on our processes and performance. During these sessions, we discussed what went well, what could be improved, and any lessons learned. The retrospective insights were then used to make iterative improvements to our workflow and practices.
 
 ## 🧪 Test Methodologies and Tools
-_ss of evidence of tests being run & need to complete_
+
+We have employed both TDD and BDD testing methodoligies within our test cases. This gave the benefit of enhancing both the development process and the final product. Both unit and integration tests are run on each PR made to the repo, which are automated using GitHub Actions. 
+
+- Unit Tests: Our unit tests follow a TDD practice and allowed us to incorporate mocks to ensure that small units of code were functioning as expected. For example, this allowed us to write tests asserting that the Flask router would return a valid response given a specific request. The usage of mocks allowed for positive and negative test scenarios to be tested without incorporating the database. 
+
+- Integration Tests: Our integration tests follow a BDD practice and allowed us to test end to end interactions between different components of the system. By using Docker containers we are able to simulate a production environment and ensure that the behaviour of the system as a whole functions as expected. Following standard BDD methology we have used GIVEN, WHEN and THEN statements. This makes it clear to developers and other stake holders to understand the expectations of the system and also what each step within the step is doing. 
+
+- Smoke Tests: By containerizing our services via Docker we can perform a smoke test / build acceptance test upon each pull request. Before the integration tests are run the todo_app application is built and ran it it's own container. Once the application is built a healthcheck of the service is performed to ensure that the application is healthy and that the tests can be run. Our health check makes a request to the web server and ensures that a valid repsonse is returned. This plus the integration tests themselves serve as build acceptance tests, ensuring that the application correctly builds within the container and is healthy.
+
+## 👀 Testing Screenshots
+
+### Unit Tests
+
+<img width="982" alt="Screenshot 2024-07-16 at 19 55 19" src="https://github.com/user-attachments/assets/601e2f61-a0a1-41c3-987a-93347662a38b">
+
+
+### Integration Tests
+
+<img width="983" alt="Screenshot 2024-07-16 at 19 39 03" src="https://github.com/user-attachments/assets/15b9f4c7-bd1a-47f3-9632-b5fa2930a52f">
+
 
 ## 💻 Coding Best Practices
-_ss of test suite results_
 
 ### Consistent Code Style:
    - **Formatting:** We used Black for code formatting to ensure a consistent code style across the project. This minimised style-related discrepancies and made the code easier to read and review.
@@ -147,7 +180,7 @@ _ss of test suite results_
    - **Pull Requests:** We used pull requests (PRs) to review code before merging it into the main branch. Each PR was reviewed by at least one other team member to ensure code quality and catch potential issues.
 
 ### Testing:
-   - **Automated Tests:** We wrote unit tests, integration tests, and end-to-end tests to ensure our code worked as expected. Testing was an integral part of our development process.
+   - **Automated Tests:** We wrote unit tests and end-to-end integration tests to ensure our code worked as expected. Testing was an integral part of our development process.
 
 ### CI Pipeline
 
@@ -160,11 +193,22 @@ We set up our Continuous Integration (CI) pipeline to automate testing and deplo
 2. **CI Workflow:**
    - **Build:** The workflow started by setting up the necessary environment, including installing dependencies for both the backend and frontend.
    - **Linting:** The next step involved running linters to check for coding standard violations.
-   - **Testing:** We ran our test suites using Pytest. This step ensured that all new code passed existing tests and that no new bugs were introduced.
+   - **Testing:** We ran our test suites using Pytest. This step ensured that all new code passed existing tests and that no new bugs were introduced. For integration tests Docker containers are built and verified they are healthy before the tests are performed using the containers. 
    - **Deployment:** Upon passing all tests, the code was automatically deployed to our staging environment for further manual testing and validation.
 
 3. **Snapshots of Test Suite Results:**
-   _insert ss_
+
+### Unit tests succesfully passing within GitHub Actions upon a pull request.
+<img width="1058" alt="Screenshot 2024-07-16 at 20 00 09" src="https://github.com/user-attachments/assets/5ad90d0e-779a-4f40-b86d-981462ae08d6">
+
+### Integration tests succesfully passing within GitHub Actions upon a pull request.
+<img width="1047" alt="Screenshot 2024-07-16 at 20 01 44" src="https://github.com/user-attachments/assets/629c65d6-e76c-42cb-8939-9400e6bf0a80">
+
+### Linting checks succesfully passing within GitHub Actions upon a pull request.
+<img width="1060" alt="Screenshot 2024-07-16 at 20 02 46" src="https://github.com/user-attachments/assets/797f59d2-760a-4ef1-b289-093cf11a40f0">
+
+### Checks passed but merging blocked due to a review being required by an approved code reviewer. 
+<img width="923" alt="Screenshot 2024-07-16 at 19 58 41" src="https://github.com/user-attachments/assets/4531cdd2-ca75-4564-8ab0-c83ddaf71019">
 
 ### Pull Request Strategies
 
