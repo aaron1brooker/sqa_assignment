@@ -5,6 +5,14 @@ logger = logging.getLogger(__name__)
 
 
 def add_item_to_db(item_id, item_description, item_completed) -> bool:
+    if item_id == None or item_id == "":
+        logger.warn("Unable to add item without item_id")
+        return False
+
+    if item_description == None or item_description == "":
+        logger.warn("Unable to add item without description")
+        return False
+
     try:
         connection = mysql.connector.connect(user="root", password="root", host="mysql", port="3306", database="db")
         logger.info("Sucessfully connected to DB in add_item_to_db")

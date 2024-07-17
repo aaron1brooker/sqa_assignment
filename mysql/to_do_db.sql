@@ -7,8 +7,8 @@ CREATE TABLE items(
     PRIMARY KEY (item_id)
 );
 
-INSERT INTO items(item_id, description, completed)
-VALUES("item_id_1","Complete ADA assignment", 1);
+-- INSERT INTO items(item_id, description, completed)
+-- VALUES("item_id_1","Complete ADA assignment", 1);
 
-INSERT INTO items(item_id, description, completed)
-VALUES("item_id_2","Cook dinner", 0);
+-- INSERT INTO items(item_id, description, completed)
+-- VALUES("item_id_2","Cook dinner", 0);

@@ -3,3 +3,4 @@ pytest
 black==22.10.0
 mypy
 mysql-connector-python
+requests
