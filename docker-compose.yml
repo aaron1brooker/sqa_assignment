@@ -6,6 +6,12 @@ services:
         condition: service_healthy
     ports: 
       - '5001:5001'
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5001/"]
+      interval: 30s
+      retries: 5
+      start_period: 20s
+      timeout: 10s
 
   mysql: 
     build: ./mysql/
@@ -23,3 +29,13 @@ services:
       interval: 1s
       timeout: 5s
       retries: 55
+
+  todo_app-test:
+    build:
+      context: .
+      dockerfile: tests.Dockerfile
+    depends_on:
+      mysql:
+        condition: service_healthy
+      todo_app:
+        condition: service_healthy
