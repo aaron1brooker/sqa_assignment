@@ -3,11 +3,14 @@
 This project is a web-based To-Do list application designed to help users efficiently manage their tasks. Built with a focus on simplicity and usability, the application allows users to create, read, update, and delete (CRUD) tasks seamlessly.
 
 ### User Interface Snapshots:
-_insert ss_ 
+
+This video demo shows:
 - Create Tasks: Users can add new tasks with descriptions.
 - Read Tasks: The main interface displays a list of all tasks, including completion status.
 - Update Tasks: Users can edit task details.
 - Delete Tasks: Tasks can be permanently removed from the list.
+
+https://github.com/user-attachments/assets/8ec3eae7-7664-4c39-b3bc-d09388efd4f0
 
 ## 👨‍💻 Team Description
 
@@ -35,45 +38,45 @@ Azra Mukadam:
 - Review pull requests
 - Contribute to documentation
 
-The workload was split evenly between each member of the team, with different primary focuses in different areas, but all areas being crucial to the development of the project. Therefore, the contribution was 33% from each team member.
+The workload was split evenly between each member of the team, with different primary focuses in different areas, but all areas being crucial to the development of the project. Therefore, the contribution was 33% from each team member. _NOTE: The PRs are not an accurate representation of work done as we shared code to be included in each other's PRs. All members contributed to coding and documentation._
 
 ## 🛠 Tools Used
 
 In the development of our To-Do application, we utilised a variety of tools to ensure high-quality code, effective project management, and comprehensive testing. Below is a detailed list of the tools we used across different aspects of the project:
 
 ### Version control
-Git: For tracking changes in the source code during development.
-GitHub: As the remote repository for collaboartion, code reviews, and issue tracking.
+- Git: For tracking changes in the source code during development.
+- GitHub: As the remote repository for collaboartion, code reviews, and issue tracking.
 
 ### Database
-MySQL: As the relational database management system for storing user data and tasks.
+- MySQL: As the relational database management system for storing user data and tasks.
 
 ### Testing
-Pytest: For unit and integration testing of Python code to ensure functionality and reliability.
 
-Docker: Docker has been utilised to containerize the individual components of the system such as the MySQL database and the flask router. We have also implemented a seperate test container where are our integration tests run within the Docker environment, utilising our containerized services to simulate a production environment. 
+- Pytest: For unit and integration testing of Python code to ensure functionality and reliability.
+- Docker: Docker has been utilised to containerize the individual components of the system such as the MySQL database and the flask router. We have also implemented a seperate test container where are our integration tests run within the Docker environment, utilising our containerized services to simulate a production environment. 
 
 ### Test Code Coverage
-Coverage.py: To measure the amount of Python code tested by our test suites and identify untested parts of the application.
+- Coverage.py: To measure the amount of Python code tested by our test suites and identify untested parts of the application.
 
 ### Frameworks/Libraries
-Pydantic: For data validation and settings management using Python type annotations.
-Flask: As the lightweight web framework for the Python backend to handle API requests.
-Docker: 
+- Pydantic: For data validation and settings management using Python type annotations.
+- Flask: As the lightweight web framework for the Python backend to handle API requests.
 
 ### Linters
-Black Formatter: For code formatting to ensure a consistent code style across the project.
-Mypy: For static type checking to identify type errors in Python code.
+- Black Formatter: For code formatting to ensure a consistent code style across the project.
+- Mypy: For static type checking to identify type errors in Python code.
 
 ### Project Management Tools
-Kanban Board: Used for tracking tasks, managing project progress, and organising work in a visual format. It provided clear visibility into the workflow and facilitated dynamic task allocation.
-_insert ss_
+- Kanban Board: Used for tracking tasks, managing project progress, and organising work in a visual format. It provided clear visibility into the workflow and facilitated dynamic task allocation.
+
+![image](https://github.com/user-attachments/assets/57f15371-cefd-4f26-b0f2-ba36dfb13d30)
 
 ### Performance and Accessibility Audit
-Google Lighthouse: For auditing the performance, accessibility, and best practices of the web application, ensuring optimal performance and user experience.
+- Google Lighthouse: For auditing the performance, accessibility, and best practices of the web application, ensuring optimal performance and user experience.
 
 ### Continuous Integration/Continuous Deployment (CI/CD)
-GitHub Actions: For automating the testing and deployment processes, ensuring continuous integration and deployment of code changes. This tool helped maintain code quality and facilitated the smooth release of new features.
+- GitHub Actions: For automating the testing and deployment processes, ensuring continuous integration and deployment of code changes. This tool helped maintain code quality and facilitated the smooth release of new features.
 
 ## 📑 Running the Application
 
@@ -102,7 +105,10 @@ docker-compose up --build todo_app-test
 ```
 
 ### How to use the application:
-_How to create, update, read, and delete tasks_
+- To create a task, click the + and start typing your to-do item
+- To edit a task, click the text in the task item and start typing
+- To complete a task, check the textbox
+- To delete a task, click the bin icon next to the task you want to delete
 
 ## 🚦 Project Workflow
 
@@ -304,10 +310,34 @@ ISO/IEC 25010 is an international standard that defines a model for software pro
    - We held regular retrospectives and feedback sessions to review the quality of the software and the effectiveness of our processes. Insights from these sessions were used to continuously refine and improve our quality assurance practices.
 
 ## 🎭 Performance and Accessibility Audit
-_ss of results & need to complete_
 
+To evaluate the performance and accessibility of our application, we utilised Google Lighthouse. Lighthouse provides a comprehensive analysis across various metrics, ensuring that our application is optimised for speed, accessibility, best practices, and SEO.
 
+![image](https://github.com/user-attachments/assets/7d73c297-f96a-4ccd-9e79-e9b271b07916)
 
+### Performance
+The performance audit yielded an impressive score of 98. The key metrics contributing to this score are:
+- First Contentful Paint (FCP): 1.9s
+- Largest Contentful Paint (LCP): 1.9s
+- Total Blocking Time (TBT): 0ms
+- Cumulative Layout Shift (CLS): 0
+- Speed Index: 1.9s
 
+These results indicate that our application loads quickly and efficiently, providing a seamless user experience with minimal delays and no unexpected layout shifts.
 
+### Accessibility
+The accessibility score of 90 reflects a strong commitment to making our application usable for all users, including those with disabilities. While this is a high score, there is room for improvement to ensure even better accessibility standards.
 
+### Best Practices
+Scoring 96 in best practices shows that our application adheres to modern web development standards, ensuring security and performance.
+
+### SEO
+With an SEO score of 90, our application is well-optimised for search engines, making it easier for users to find our content.
+
+### Improvement Suggestions
+
+![image](https://github.com/user-attachments/assets/4498dca6-342d-46a9-aab1-88b13770ac51)
+
+Despite the high scores, the audit highlights some areas for potential improvement:
+- Enabling Text Compression: By serving text-based resources with compression (gzip, deflate, or brotli), we can save up to 6 KiB. This optimisation can further enhance loading speeds, especially  for users with slower network connections.
+- Reduce Unused JavaScript: By reducing unused JavaScript, we can save up to 21 KiB. This can decrease the bytes consumed by network activity, improving overall performance.
