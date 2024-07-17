@@ -3,11 +3,14 @@
 This project is a web-based To-Do list application designed to help users efficiently manage their tasks. Built with a focus on simplicity and usability, the application allows users to create, read, update, and delete (CRUD) tasks seamlessly.
 
 ### User Interface Snapshots:
-_insert ss_ 
+
+This video demo shows:
 - Create Tasks: Users can add new tasks with descriptions.
 - Read Tasks: The main interface displays a list of all tasks, including completion status.
 - Update Tasks: Users can edit task details.
 - Delete Tasks: Tasks can be permanently removed from the list.
+
+https://github.com/user-attachments/assets/8ec3eae7-7664-4c39-b3bc-d09388efd4f0
 
 ## 👨‍💻 Team Description
 
@@ -308,10 +311,34 @@ ISO/IEC 25010 is an international standard that defines a model for software pro
    - We held regular retrospectives and feedback sessions to review the quality of the software and the effectiveness of our processes. Insights from these sessions were used to continuously refine and improve our quality assurance practices.
 
 ## 🎭 Performance and Accessibility Audit
-_ss of results & need to complete_
 
+To evaluate the performance and accessibility of our application, we utilised Google Lighthouse. Lighthouse provides a comprehensive analysis across various metrics, ensuring that our application is optimised for speed, accessibility, best practices, and SEO.
 
+![image](https://github.com/user-attachments/assets/7d73c297-f96a-4ccd-9e79-e9b271b07916)
 
+### Performance
+The performance audit yielded an impressive score of 98. The key metrics contributing to this score are:
+- First Contentful Paint (FCP): 1.9s
+- Largest Contentful Paint (LCP): 1.9s
+- Total Blocking Time (TBT): 0ms
+- Cumulative Layout Shift (CLS): 0
+- Speed Index: 1.9s
 
+These results indicate that our application loads quickly and efficiently, providing a seamless user experience with minimal delays and no unexpected layout shifts.
 
+### Accessibility
+The accessibility score of 90 reflects a strong commitment to making our application usable for all users, including those with disabilities. While this is a high score, there is room for improvement to ensure even better accessibility standards.
 
+### Best Practices
+Scoring 96 in best practices shows that our application adheres to modern web development standards, ensuring security and performance.
+
+### SEO
+With an SEO score of 90, our application is well-optimised for search engines, making it easier for users to find our content.
+
+### Improvement Suggestions
+
+![image](https://github.com/user-attachments/assets/4498dca6-342d-46a9-aab1-88b13770ac51)
+
+Despite the high scores, the audit highlights some areas for potential improvement:
+- Enabling Text Compression: By serving text-based resources with compression (gzip, deflate, or brotli), we can save up to 6 KiB. This optimisation can further enhance loading speeds, especially  for users with slower network connections.
+- Reduce Unused JavaScript: By reducing unused JavaScript, we can save up to 21 KiB. This can decrease the bytes consumed by network activity, improving overall performance.
