@@ -62,7 +62,6 @@ In the development of our To-Do application, we utilised a variety of tools to e
 ### Frameworks/Libraries
 - Pydantic: For data validation and settings management using Python type annotations.
 - Flask: As the lightweight web framework for the Python backend to handle API requests.
-- Docker: 
 
 ### Linters
 - Black Formatter: For code formatting to ensure a consistent code style across the project.
